@@ -27,9 +27,8 @@ steps:
   inputs:
     SonarCloud: 'TriviaGameNG'
     organization: 'craigastuckey-github'
-    scannerMode: 'MSBuild'
-    projectKey: 'TriviaGameNG'
-    projectName: 'TriviaGameNG'
+    scannerMode: 'CLI'
+    configMode: 'file'
 
 - script: npm run build-ci
   displayName: 'Build'
