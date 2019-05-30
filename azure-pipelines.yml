@@ -18,7 +18,6 @@ steps:
 #- script: npm ci
 - script: npm install -g @angular/cli
   displayName: 'npm install'
-  workingDirectory: TriviaGameNG/
 
 #- script: npm run lint
 #  displayName: 'npm run lint'
@@ -33,6 +32,7 @@ steps:
 
 - script: npm run build-ci TriviaGameNG/
   displayName: 'Build'
+  workingDirectory: TriviaGameNG/
   
 - task: SonarCloudAnalyze@1
 
