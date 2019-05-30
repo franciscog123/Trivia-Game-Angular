@@ -30,7 +30,7 @@ steps:
     projectKey: 'TriviaGameNG'
     projectName: 'TriviaGameNG'
 
-- script: npm run build-ci
+- script: npm run build-ci TriviaGameNG/
   displayName: 'Build'
   
 - task: SonarCloudAnalyze@1
