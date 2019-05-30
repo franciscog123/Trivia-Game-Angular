@@ -30,7 +30,7 @@ steps:
     projectKey: 'TriviaGameNG'
     projectName: 'TriviaGameNG'
 
-- script: npm run build-ci TriviaGameNG/
+- script: npm run build-ci
   displayName: 'Build'
   workingDirectory: TriviaGameNG/
   
