@@ -1,0 +1,9 @@
+<div style="text-align: center">
+  <h2>{{question.questionString}}</h2>
+</div>
+
+<div *ngFor="let choice of question.questionChoices">
+  <input type="radio" name="choice" value="{{choice.choiceId}}">{{choice.choiceString}}
+</div>
+
+<button (click)="getQuestionModel()">New Question</button>
