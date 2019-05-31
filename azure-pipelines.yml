@@ -16,21 +16,51 @@ steps:
   displayName: 'Install Node.js'
 
 - script: npm ci
+#- script: npm install -g @angular/cli
   displayName: 'npm install'
+  workingDirectory: TriviaGameNG/
 
-- script: npm run lint
-  displayName: 'npm run lint'
+#- script: npm run lint
+#  displayName: 'npm run lint'
 
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'TriviaGameNG'
     organization: 'craigastuckey-github'
-    scannerMode: 'MSBuild'
-    projectKey: 'TriviaGameNG'
-    projectName: 'TriviaGameNG'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'TriviaGameNG'
+    cliSources: '.'
 
+- script: npm run build-ci
+  displayName: 'Build'
+  workingDirectory: TriviaGameNG/
+  
 - task: SonarCloudAnalyze@1
 
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '100'
+
+#- task: AzureRmWebAppDeployment@4
+#  inputs:
+#    ConnectionType: 'AzureRM'
+#    azureSubscription: 'Pay-As-You-Go(c46194b8-1218-46ee-82a1-de3fbcd60cc2)'
+#    appType: 'webAppLinux'
+#    WebAppName: '1904-TriviaGame-Angular'
+#    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+#    RuntimeStack: 'NODE|lts'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go(c46194b8-1218-46ee-82a1-de3fbcd60cc2)'
+    appType: 'webApp'
+    WebAppName: '1904-TriviaGame-Asp-NG'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
