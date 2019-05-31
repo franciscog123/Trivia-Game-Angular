@@ -2,8 +2,16 @@
   <h2>{{question.questionString}}</h2>
 </div>
 
-<div *ngFor="let choice of question.questionChoices">
-  <input type="radio" name="choice" value="{{choice.choiceId}}">{{choice.choiceString}}
+<form [formGroup]="answerForm" (ngSubmit)="checkAnswer()">
+  <div *ngFor="let choice of question.questionChoices">
+    <input type="radio" formControlName="choiceId" value="{{choice.choiceId}}">
+    {{choice.choiceString}}
+  </div>
+  <button>Submit</button>
+</form>
+
+<div *ngIf="answer">
+  <h3> Your answer: {{answer.choiceString}}</h3>
 </div>
 
 <button (click)="getQuestionModel()">New Question</button>

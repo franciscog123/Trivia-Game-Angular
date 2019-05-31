@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TriviaGameService } from '../trivia-game-service.service';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Question } from '../models/question'
+import { Choice } from '../models/choice';
 
 @Component({
   selector: 'app-question',
@@ -10,8 +12,14 @@ import { Question } from '../models/question'
 export class QuestionComponent implements OnInit {
 
   question : Question;
+  answerForm: FormGroup;
+  answer: Choice;
 
-  constructor(private gameSvc: TriviaGameService) { }
+  constructor(private gameSvc: TriviaGameService) { 
+    this.answerForm = new FormGroup({
+      choiceId: new FormControl('', Validators.required)
+    })
+  }
 
   ngOnInit() {
     this.getQuestionModel();
@@ -19,5 +27,13 @@ export class QuestionComponent implements OnInit {
 
   getQuestionModel() {
     this.gameSvc.getRandomQuestion().then(question => this.question = question);
+  }
+
+  checkAnswer() {
+    this.question.questionChoices.forEach( (choice) => {
+      if(choice.choiceId == this.answerForm.get('choiceId').value) {
+        this.answer = choice;
+      }
+    });
   }
 }
