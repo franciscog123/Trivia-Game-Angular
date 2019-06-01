@@ -14,10 +14,11 @@ export class QuestionComponent implements OnInit {
   question : Question;
   answerForm: FormGroup;
   answer: Choice;
+  submitted: boolean = false;
 
   constructor(private gameSvc: TriviaGameService) { 
     this.answerForm = new FormGroup({
-      choiceId: new FormControl('', Validators.required)
+      choiceId: new FormControl('')
     })
   }
 
@@ -29,7 +30,18 @@ export class QuestionComponent implements OnInit {
     this.gameSvc.getRandomQuestion().then(question => this.question = question);
   }
 
+  getNextQuestion() {
+    this.submitted = false;
+    this.answer = null;
+    this.answerForm.reset();
+    this.gameSvc.getRandomQuestion().then(question => this.question = question);
+  }
+
   checkAnswer() {
+    if(!this.answerForm.get('choiceId').value) {
+      return;
+    }
+    this.submitted = true;
     this.question.questionChoices.forEach( (choice) => {
       if(choice.choiceId == this.answerForm.get('choiceId').value) {
         this.answer = choice;

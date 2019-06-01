@@ -7,11 +7,13 @@
     <input type="radio" formControlName="choiceId" value="{{choice.choiceId}}">
     {{choice.choiceString}}
   </div>
-  <button>Submit</button>
+  <button *ngIf="!submitted; else elseBlock">Submit</button>
 </form>
+<ng-template #elseBlock><button (click)="getNextQuestion()">Next Question</button></ng-template>
 
 <div *ngIf="answer">
-  <h3> Your answer: {{answer.choiceString}}</h3>
+  <h3>Your answer is {{answer.correct ? 'correct' : 'incorrect'}}</h3>
 </div>
-
-<button (click)="getQuestionModel()">New Question</button>
+<div *ngIf="submitError">
+  <h3>{{submitError}}</h3>
+</div>
