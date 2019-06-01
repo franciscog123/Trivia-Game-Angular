@@ -1,17 +1,17 @@
 <div style="text-align: center">
   <h2>{{question.questionString}}</h2>
 </div>
+<div style="text-align: center">
+  <form [formGroup]="answerForm" (ngSubmit)="checkAnswer()">
+    <div *ngFor="let choice of question.questionChoices">
+      <input type="radio" formControlName="choiceId" value="{{choice.choiceId}}">
+      {{choice.choiceString}}
+    </div>
+    <button *ngIf="!submitted; else elseBlock">Submit</button>
+  </form>
+  <ng-template #elseBlock><button (click)="getNextQuestion()">Next Question</button></ng-template>
 
-<form [formGroup]="answerForm" (ngSubmit)="checkAnswer()">
-  <div *ngFor="let choice of question.questionChoices">
-    <input type="radio" formControlName="choiceId" value="{{choice.choiceId}}">
-    {{choice.choiceString}}
+  <div *ngIf="answer">
+    <h3>Your answer is {{answer.correct ? 'correct' : 'incorrect'}}</h3>
   </div>
-  <button *ngIf="!submitted; else elseBlock">Submit</button>
-</form>
-<ng-template #elseBlock><button (click)="getNextQuestion()">Next Question</button></ng-template>
-
-<div *ngIf="answer">
-  <h3>Your answer is {{answer.correct ? 'correct' : 'incorrect'}}</h3>
 </div>
-

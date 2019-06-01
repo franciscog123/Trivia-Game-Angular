@@ -7,8 +7,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <p>You selected: {{selGameModeId}}</p>
-
+  <br>
   <mat-form-field>
     <mat-label>Select a Category</mat-label>
     <mat-select *ngFor="let category of categories" [(value)]="selCategoryId">
@@ -17,5 +16,10 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <p>You selected: {{selCategoryId}}</p>
+</div>
+
+<div style="text-align: center">
+  <nav>
+    <button routerLink="/quiz">Start Quiz</button>
+  </nav>
 </div>
