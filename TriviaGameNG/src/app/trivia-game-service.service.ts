@@ -3,6 +3,7 @@ import { User } from './models/user';
 import { Category } from './models/category'
 import { Question } from './models/question'
 import { HttpClient } from '@angular/common/http';
+import { GameMode } from './models/gameMode';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,26 @@ export class TriviaGameService {
 
   private static getRandomQuestionUrl(): string {
     return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/quiz/getrandomquestion/1`;
+  }
+
+  private static getGameModeUrl(): string {
+    return 'https://1904-guerrerof-triviagameapi.azurewebsites.net/api/gamemode';
+  }
+
+  private static getCategoryUrl(): string {
+    return 'https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories'
+  }
+
+  getGameModes(): Promise<GameMode[]> {
+    return this.http.get<GameMode[]>(TriviaGameService.getGameModeUrl())
+    .toPromise()
+    .then(res => res);
+  }
+
+  getCategories(): Promise<Category[]> {
+    return this.http.get<Category[]>(TriviaGameService.getCategoryUrl())
+    .toPromise()
+    .then(res => res);
   }
 
   getUser(): Promise<User> {

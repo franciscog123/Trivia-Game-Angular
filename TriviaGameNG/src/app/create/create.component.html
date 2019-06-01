@@ -1,0 +1,21 @@
+<div style="text-align: center">
+  <mat-form-field>
+    <mat-label>Select a Game Mode</mat-label>
+    <mat-select *ngFor="let gameMode of gameModes" [(value)]="selGameModeId">
+      <mat-option value="{{gameMode.gameModeId}}">
+        {{gameMode.gameModeString}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>You selected: {{selGameModeId}}</p>
+
+  <mat-form-field>
+    <mat-label>Select a Category</mat-label>
+    <mat-select *ngFor="let category of categories" [(value)]="selCategoryId">
+      <mat-option value="{{category.categoryId}}">
+        {{category.categoryString}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>You selected: {{selCategoryId}}</p>
+</div>
