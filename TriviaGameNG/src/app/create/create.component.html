@@ -18,8 +18,10 @@
   </mat-form-field>
 </div>
 
-<div style="text-align: center">
+<div style="text-align: center" *ngIf="selCategoryId && selGameModeId">
   <nav>
-    <button routerLink="/quiz">Start Quiz</button>
+    <button [routerLink]="['/quiz', 1, selGameModeId, selCategoryId]">
+      Start Quiz
+    </button>
   </nav>
 </div>

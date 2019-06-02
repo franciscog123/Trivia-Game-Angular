@@ -5,7 +5,7 @@ import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/create', pathMatch: 'full'},
-  { path: 'quiz', component: QuizComponent },
+  { path: 'quiz/:userId/:gameModeId/:categoryId', component: QuizComponent },
   { path: 'create', component: CreateComponent }
 ]
 

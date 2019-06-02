@@ -2,7 +2,7 @@ import { Question } from './question';
 import { Category } from './category';
 import { GameMode } from './gameMode';
 
-export interface quiz {
+export interface Quiz {
     quizId: number;
     userId: number;
     categoryId: number;

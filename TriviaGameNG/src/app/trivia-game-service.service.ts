@@ -23,7 +23,7 @@ export class TriviaGameService {
   }
 
   private static getCategoryUrl(): string {
-    return 'https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories'
+    return 'https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories';
   }
 
   getGameModes(): Promise<GameMode[]> {
