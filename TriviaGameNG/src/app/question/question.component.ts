@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, } from '@angular/core';
 import { TriviaGameService } from '../trivia-game-service.service';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Question } from '../models/question'
 import { Choice } from '../models/choice';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-question',
@@ -13,6 +14,7 @@ export class QuestionComponent implements OnInit {
   @Input() gameModeId: number;
   @Input() userId: number;
   @Input() categoryId: number;
+  @Output() newScore = new EventEmitter<number>()
   question : Question;
   answerForm: FormGroup;
   answer: Choice;
@@ -49,5 +51,9 @@ export class QuestionComponent implements OnInit {
         this.answer = choice;
       }
     });
+  }
+
+  updateScore() {
+    this.newScore.emit(this.question.value);
   }
 }

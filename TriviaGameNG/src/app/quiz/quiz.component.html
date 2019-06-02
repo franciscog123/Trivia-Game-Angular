@@ -1,1 +1,9 @@
-<app-question [gameModeId]="gameModeId" [userId]="userId" [categoryId]="categoryId"></app-question>
+
+<app-question 
+    [gameModeId]="gameModeId" 
+    [userId]="userId" 
+    [categoryId]="categoryId"
+    (newScore)="onSubmit($event)">
+</app-question>
+
+<h3>Your score: {{score}}</h3>

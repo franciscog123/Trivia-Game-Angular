@@ -6,6 +6,7 @@ import { TriviaGameService } from '../trivia-game-service.service';
 import { User } from '../models/user';
 import { GameMode } from '../models/gameMode';
 import { Category } from '../models/category';
+import { Question } from '../models/question';
 
 @Component({
   selector: 'app-quiz',
@@ -29,7 +30,14 @@ export class QuizComponent implements OnInit, Quiz {
     this.gameModeId = <number><unknown>this.route.snapshot.paramMap.get("gameModeId");
     this.userId = <number><unknown>this.route.snapshot.paramMap.get("userId");
     this.categoryId = <number><unknown>this.route.snapshot.paramMap.get("categoryId");
+    this.score = 0;
+    this.time = 0;
   };
+
+  onSubmit(score: number) {
+    this.score += score;
+    console.log(`${this.score}`);
+  }
     
 }
 
