@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
   @Input() userId: number;
   @Input() categoryId: number;
   @Output() newScore = new EventEmitter<number>()
+  @Output() finished = new EventEmitter<boolean>();
   question : Question;
   answerForm: FormGroup;
   answer: Choice;
@@ -55,5 +56,9 @@ export class QuestionComponent implements OnInit {
 
   updateScore() {
     this.newScore.emit(this.question.value);
+  }
+
+  finish() {
+    this.finished.emit(true);
   }
 }

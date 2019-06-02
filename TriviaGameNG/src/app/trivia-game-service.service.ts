@@ -4,11 +4,15 @@ import { Category } from './models/category'
 import { Question } from './models/question'
 import { HttpClient } from '@angular/common/http';
 import { GameMode } from './models/gameMode';
+import { Quiz } from './models/quiz';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TriviaGameService {
+
+  constructor(private http: HttpClient) { }
 
   private static getUserUrl(userId: number = 1): string {
     return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user/1`;
@@ -24,6 +28,21 @@ export class TriviaGameService {
 
   private static getCategoryUrl(): string {
     return 'https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories';
+  }
+
+  private static getQuizUrl(): string {
+    return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/quiz/`
+  }
+
+  addQuiz(quiz: Quiz): Observable<Quiz> {
+    try {
+      console.log("trying to post")
+      return this.http.post<Quiz>(TriviaGameService.getQuizUrl(), quiz)
+    }
+    catch(ex)
+    {
+      console.log("some shit went wrong");
+    }
   }
 
   getGameModes(): Promise<GameMode[]> {
@@ -48,6 +67,4 @@ export class TriviaGameService {
     return this.http.get<Question>(TriviaGameService.getRandomQuestionUrl(id))
     .toPromise();
   }
-
-  constructor(private http: HttpClient) { }
 }

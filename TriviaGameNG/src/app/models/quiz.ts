@@ -2,11 +2,14 @@ import { Question } from './question';
 import { Category } from './category';
 import { GameMode } from './gameMode';
 
-export interface Quiz {
+export class Quiz {
     quizId: number;
     userId: number;
     categoryId: number;
     gameModeId: number;
     score: number;
     time: number;
+    questions: null;
+    category: null;
+    gameMode: null;
 }

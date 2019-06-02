@@ -10,14 +10,14 @@
     <button *ngIf="!submitted; else elseBlock1">Submit</button>
   </form>
   <ng-template #elseBlock1>
-      {{updateScore()}}
     <div *ngIf="answer.correct; else elseBlock2">
+        {{updateScore()}}
       <button (click)="getNextQuestion()">
         Next Question
       </button>
     </div>
     <ng-template #elseBlock2>
-      <button [routerLink]="['']">Play Again</button>
+      <button (click)="finish()">Play Again</button>
     </ng-template>
   </ng-template>
 

@@ -13,13 +13,8 @@ import { Question } from '../models/question';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent implements OnInit, Quiz {
-  quizId: number;
-  userId: number;
-  gameModeId: number;
-  categoryId: number;
-  score: number;
-  time: number;
+export class QuizComponent implements OnInit {
+  quiz: Quiz = new Quiz();
 
 
   constructor(private route: ActivatedRoute, 
@@ -27,18 +22,21 @@ export class QuizComponent implements OnInit, Quiz {
               private gameSvc: TriviaGameService) { }
 
   ngOnInit() {
-    this.gameModeId = <number><unknown>this.route.snapshot.paramMap.get("gameModeId");
-    this.userId = <number><unknown>this.route.snapshot.paramMap.get("userId");
-    this.categoryId = <number><unknown>this.route.snapshot.paramMap.get("categoryId");
-    this.score = 0;
-    this.time = 0;
+    this.quiz.gameModeId = <number><unknown>this.route.snapshot.paramMap.get("gameModeId");
+    this.quiz.userId = <number><unknown>this.route.snapshot.paramMap.get("userId");
+    this.quiz.categoryId = <number><unknown>this.route.snapshot.paramMap.get("categoryId");
+    this.quiz.score = 0;
+    this.quiz.time = 0;
   };
 
   onSubmit(score: number) {
-    this.score += score;
-    console.log(`${this.score}`);
+    this.quiz.score += score;
   }
     
+  onFinished(finished: boolean) {
+    this.gameSvc.addQuiz(this.quiz);
+    this.router.navigate(['']);
+  }
 }
 
 
