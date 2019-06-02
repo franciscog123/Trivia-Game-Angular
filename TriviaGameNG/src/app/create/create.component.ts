@@ -12,7 +12,7 @@ export class CreateComponent implements OnInit {
   gameModes: GameMode[];
   categories: Category[];
   selGameModeId: number;
-  selCategory: number;
+  selCategoryId: number;
 
   constructor(private gameSvc: TriviaGameService) { 
   }
