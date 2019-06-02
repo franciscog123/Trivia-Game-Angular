@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TriviaGameService } from '../trivia-game-service.service';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Question } from '../models/question'
@@ -10,7 +10,9 @@ import { Choice } from '../models/choice';
   styleUrls: ['./question.component.css', '../app.component.css']
 })
 export class QuestionComponent implements OnInit {
-
+  @Input() gameModeId: number;
+  @Input() userId: number;
+  @Input() categoryId: number;
   question : Question;
   answerForm: FormGroup;
   answer: Choice;
@@ -27,14 +29,14 @@ export class QuestionComponent implements OnInit {
   }
 
   getQuestionModel() {
-    this.gameSvc.getRandomQuestion().then(question => this.question = question);
+    this.gameSvc.getRandomQuestion(this.categoryId).then(question => this.question = question);
   }
 
   getNextQuestion() {
     this.submitted = false;
     this.answer = null;
     this.answerForm.reset();
-    this.gameSvc.getRandomQuestion().then(question => this.question = question);
+    this.gameSvc.getRandomQuestion(this.categoryId).then(question => this.question = question);
   }
 
   checkAnswer() {

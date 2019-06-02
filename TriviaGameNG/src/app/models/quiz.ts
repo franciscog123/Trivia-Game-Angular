@@ -9,7 +9,4 @@ export interface Quiz {
     gameModeId: number;
     score: number;
     time: number;
-    questions: Question[];
-    category: Category;
-    gameMode: GameMode;
 }

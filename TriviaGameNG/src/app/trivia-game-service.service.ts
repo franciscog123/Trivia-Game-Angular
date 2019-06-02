@@ -14,8 +14,8 @@ export class TriviaGameService {
     return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user/1`;
   }
 
-  private static getRandomQuestionUrl(): string {
-    return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/quiz/getrandomquestion/1`;
+  private static getRandomQuestionUrl(id: number): string {
+    return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/quiz/getrandomquestion/${id}`;
   }
 
   private static getGameModeUrl(): string {
@@ -44,8 +44,8 @@ export class TriviaGameService {
     .then(res => res);
   }
 
-  getRandomQuestion(): Promise<Question> {
-    return this.http.get<Question>(TriviaGameService.getRandomQuestionUrl())
+  getRandomQuestion(id: number): Promise<Question> {
+    return this.http.get<Question>(TriviaGameService.getRandomQuestionUrl(id))
     .toPromise();
   }
 

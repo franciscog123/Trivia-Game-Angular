@@ -12,18 +12,25 @@ import { Category } from '../models/category';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent implements OnInit, Quiz {
+  quizId: number;
+  userId: number;
+  gameModeId: number;
+  categoryId: number;
+  score: number;
+  time: number;
 
-  quiz: Quiz;
-  user: User;
-  gameMode: GameMode;
-  category: Category;
 
   constructor(private route: ActivatedRoute, 
               private router: Router,  
               private gameSvc: TriviaGameService) { }
 
   ngOnInit() {
-  }
-
+    this.gameModeId = <number><unknown>this.route.snapshot.paramMap.get("gameModeId");
+    this.userId = <number><unknown>this.route.snapshot.paramMap.get("userId");
+    this.categoryId = <number><unknown>this.route.snapshot.paramMap.get("categoryId");
+  };
+    
 }
+
+
