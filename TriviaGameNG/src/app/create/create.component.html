@@ -10,11 +10,13 @@
   <br>
   <mat-form-field>
     <mat-label>Select a Category</mat-label>
-    <mat-select *ngFor="let category of categories" [(value)]="selCategoryId">
-      <mat-option value="{{category.categoryId}}">
-        {{category.categoryString}}
-      </mat-option>
-    </mat-select>
+    <div>
+      <mat-select [(value)]="selCategoryId">
+        <mat-option *ngFor="let category of categories" value="{{category.categoryId}}">
+          {{category.categoryString}}
+        </mat-option>
+      </mat-select>
+    </div>
   </mat-form-field>
 </div>
 
