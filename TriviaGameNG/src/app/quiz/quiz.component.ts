@@ -34,7 +34,7 @@ export class QuizComponent implements OnInit {
     
   onFinished(finished: boolean) {
     this.gameSvc.addQuiz(this.quiz).subscribe(quiz => console.log(quiz));
-    // this.router.navigate(['']);
+    this.router.navigate(['']);
   }
 }
 
