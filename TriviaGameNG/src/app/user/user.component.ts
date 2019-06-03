@@ -18,6 +18,6 @@ export class UserComponent implements OnInit {
   }
 
   getUserModel() {
-    this.gameSvc.getUser().then(user => this.user = user);
+    this.gameSvc.getUser(2).then(user => this.user = user);
   }
 }

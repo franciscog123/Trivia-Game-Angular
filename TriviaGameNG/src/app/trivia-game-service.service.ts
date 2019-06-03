@@ -15,7 +15,7 @@ export class TriviaGameService {
   constructor(private http: HttpClient) { }
 
   private static getUserUrl(userId: number = 1): string {
-    return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user/1`;
+    return `https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user/${userId}`;
   }
 
   private static getRandomQuestionUrl(id: number): string {
@@ -41,7 +41,7 @@ export class TriviaGameService {
     }
     catch(ex)
     {
-      console.log("some shit went wrong");
+      console.log("something went wrong");
     }
   }
 
@@ -57,8 +57,8 @@ export class TriviaGameService {
     .then(res => res);
   }
 
-  getUser(): Promise<User> {
-    return this.http.get<User>(TriviaGameService.getUserUrl())
+  getUser(id: number = 1): Promise<User> {
+    return this.http.get<User>(TriviaGameService.getUserUrl(id))
     .toPromise()
     .then(res => res);
   }
