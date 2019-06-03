@@ -8,7 +8,7 @@ export class Quiz {
     categoryId: number;
     gameModeId: number;
     score: number;
-    time: number;
+    time: Date;
     questions: null;
     category: null;
     gameMode: null;

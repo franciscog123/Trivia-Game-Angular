@@ -26,7 +26,6 @@ export class QuizComponent implements OnInit {
     this.quiz.userId = <number><unknown>this.route.snapshot.paramMap.get("userId");
     this.quiz.categoryId = <number><unknown>this.route.snapshot.paramMap.get("categoryId");
     this.quiz.score = 0;
-    this.quiz.time = 0;
   };
 
   onSubmit(score: number) {
@@ -34,8 +33,8 @@ export class QuizComponent implements OnInit {
   }
     
   onFinished(finished: boolean) {
-    this.gameSvc.addQuiz(this.quiz);
-    this.router.navigate(['']);
+    this.gameSvc.addQuiz(this.quiz).subscribe(quiz => console.log(quiz));
+    // this.router.navigate(['']);
   }
 }
 
